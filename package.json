@@ -4,7 +4,7 @@
   "description": "Entry for SkyBet tech test.",
   "scripts": {
 	"start": "node server.js",
-    "test": "mocha -u qunit"
+    "test": "mocha -u qunit -R list"
   },
   "author": "Emir Kotan",
   "license": "ISC",
