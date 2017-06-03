@@ -1,0 +1,14 @@
+{
+  "name": "skybet-entry",
+  "version": "1.0.0",
+  "description": "Entry for SkyBet tech test.",
+  "scripts": {
+	"start": "node server.js",
+    "test": "mocha -u qunit"
+  },
+  "author": "Emir Kotan",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  }
+}
