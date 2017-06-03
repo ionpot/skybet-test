@@ -7,13 +7,9 @@ var SUT = require("../model/person.js");
 var first = "Emir";
 var last = "Kotan";
 
-var sut;
+var sut = SUT.create(first, last);
 
 suite("Model - Person");
-
-beforeEach(function () {
-	sut = SUT.create(first, last);
-});
 
 test("#first", function () {
 	A.strictEqual(sut.first, first);
