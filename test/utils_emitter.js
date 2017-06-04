@@ -2,21 +2,30 @@
 
 var A = require("assert");
 
-var SUT = require("utils/emitter");
+var sut = require("utils/emitter");
 
 suite("Utils - Emitter");
 
 test("ok", function (done) {
 	this.timeout(500);
 
-	var sut = SUT.create();
+	function Foo(a, b) {
+		this.a = a;
+		this.b = b;
+	}
 
-	sut.on("name", function (val1, val2) {
-		A.strictEqual(val1, "1");
-		A.strictEqual(val2, 2);
+	sut(Foo, function run() {
+		this.emit("name", this.a, this.b);
+	});
+
+	var foo = new Foo("1", 2);
+
+	foo.on("name", function (a, b) {
+		A.strictEqual(a, "1");
+		A.strictEqual(b, 2);
 
 		done();
 	});
 
-	sut.emit("name", "1", 2);
+	foo.run();
 });
