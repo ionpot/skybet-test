@@ -29,9 +29,15 @@ test("render html5", function () {
 	sut.html5();
 	sut.title("A");
 	sut.body();
-	sut.render(function (html) {
+
+	sut.render(function (html, a, b) {
+		A.strictEqual(a, 1);
+		A.strictEqual(b, "C");
+
 		html.text("B");
-	});
+
+	}, 1, "C");
+
 	sut.end();
 
 	A.strictEqual(ws.out, '<!DOCTYPE html><html><head><meta charset="utf-8"><title>A</title></head><body>B</body></html>');
