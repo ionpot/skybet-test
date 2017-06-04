@@ -12,7 +12,7 @@ var people = [
 	P.create("E", "F")
 ];
 
-var sut = SUT.create("test/people.record");
+var sut = SUT.create("test-people.record");
 
 suite("Model - People");
 
@@ -30,7 +30,7 @@ test("empty", function (done) {
 
 test("#addBatch()", function (done) {
 	sut.addBatch(people, function (added) {
-		A.strictEqual(added, people.length);
+		A.strictEqual(added, 2);
 
 		done();
 	});
@@ -38,15 +38,10 @@ test("#addBatch()", function (done) {
 
 test("#list()", function (done) {
 	sut.list(function (list) {
+		A.strictEqual(list.length, 2);
+
 		A.strictEqual(list[0].toString(), "A B");
-
-		A.strictEqual(list[1].first, "");
-		A.strictEqual(list[1].last, "C");
-
-		A.strictEqual(list[2].first, "D");
-		A.strictEqual(list[2].last, "");
-
-		A.strictEqual(list[3].toString(), "E F");
+		A.strictEqual(list[1].toString(), "E F");
 
 		done();
 	});
