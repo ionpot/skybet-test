@@ -2,19 +2,25 @@
 
 var proto = require("utils/proto");
 
-function Person(first, last) {
-	this.first = first || "";
-	this.last = last || "";
+function allowed(str) {
+	var chars = /^[a-z]+$/i;
+
+	return chars.test(str);
 }
 
-proto(Person, function toString() {
-	var str = this.first;
+function Person(first, last) {
+	this.first = first;
+	this.last = last;
+}
 
+proto(Person, function check() {
 	if (this.first && this.last) {
-		str += " ";
+		return allowed(this.first)
+				&& allowed(this.last);
 	}
 
-	return str + this.last;
+}, function toString() {
+	return this.first + " " + this.last;
 });
 
 exports.create = function (first, last) {

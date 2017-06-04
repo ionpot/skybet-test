@@ -14,20 +14,13 @@ test("ok", function () {
 	A.strictEqual(sut.toString(), "A B");
 });
 
-test("no first", function () {
-	var sut = SUT.create("", "B");
-
-	A.strictEqual(sut.toString(), "B");
-});
-
-test("no last", function () {
-	var sut = SUT.create("A", "");
-
-	A.strictEqual(sut.toString(), "A");
-});
-
-test("empty", function () {
-	var sut = SUT.create("", "");
-
-	A.strictEqual(sut.toString(), "");
+test("#check()", function () {
+	A.ok(SUT.create("A", "B").check());
+	A.ok(!SUT.create("A", "").check());
+	A.ok(!SUT.create("", "B").check());
+	A.ok(!SUT.create("", "").check());
+	A.ok(!SUT.create("-", "B").check());
+	A.ok(!SUT.create("A", "B1").check());
+	A.ok(!SUT.create("2A", "#B").check());
+	A.ok(!SUT.create("&A", "@").check());
 });
