@@ -26,7 +26,11 @@ module.exports = function (str) {
 	}
 
 	return names.reduce(function (out, name, i) {
-		out[i] = Person.create(name, surnames[i]);
+		var p = Person.create(name.trim(), surnames[i].trim());
+
+		if (p.check()) {
+			out.push(p);
+		}
 
 		return out;
 

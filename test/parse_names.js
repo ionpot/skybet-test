@@ -45,3 +45,14 @@ test("empty list on mismatch", function () {
 
 	A.strictEqual(list.length, 0);
 });
+
+test("don't add empty or whitespace", function () {
+	var list = sut(QS.stringify({
+		firstname: ["A", " ", "\n", "  D  "],
+		surname: ["", "B", "C", "\nE\n"]
+	}));
+
+	A.strictEqual(list.length, 1);
+	A.strictEqual(list[0].first, "D");
+	A.strictEqual(list[0].last, "E");
+});
