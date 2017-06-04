@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Entry for SkyBet tech test.",
   "scripts": {
-	"start": "node server.js",
+    "start": "node server.js",
     "test": "mocha -u qunit -R list"
   },
   "author": "Emir Kotan",
