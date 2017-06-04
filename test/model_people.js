@@ -7,7 +7,8 @@ var SUT = require("../model/people.js");
 
 var people = [
 	P.create("A", "B"),
-	P.create("C", "D"),
+	P.create("", "C"),
+	P.create("D", ""),
 	P.create("E", "F")
 ];
 
@@ -38,8 +39,14 @@ test("#addBatch()", function (done) {
 test("#list()", function (done) {
 	sut.list(function (list) {
 		A.strictEqual(list[0].toString(), "A B");
-		A.strictEqual(list[1].toString(), "C D");
-		A.strictEqual(list[2].toString(), "E F");
+
+		A.strictEqual(list[1].first, "");
+		A.strictEqual(list[1].last, "C");
+
+		A.strictEqual(list[2].first, "D");
+		A.strictEqual(list[2].last, "");
+
+		A.strictEqual(list[3].toString(), "E F");
 
 		done();
 	});
