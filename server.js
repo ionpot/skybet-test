@@ -20,7 +20,7 @@ http.createServer(function (req, res) {
 			return Router.get(parts, res);
 
 		case "POST":
-			return Router.post(parts, res);
+			return Router.post(parts, req, res);
 
 		default:
 			return Err.notImplemented(res);
