@@ -9,15 +9,14 @@ suite("Utils - Writable");
 test("ok", function (done) {
 	this.timeout(500);
 
-	var expected = "Testing writable stream.";
-	var sut = SUT.create(expected);
+	var sut = SUT.create();
 
 	sut.write("Testing");
 	sut.write(" writable");
 	sut.end(" stream.");
 
-	sut.on("end", function () {
-		A.strictEqual(sut.out, expected);
+	sut.on("finish", function () {
+		A.strictEqual(sut.out, "Testing writable stream.");
 
 		done();
 	});
