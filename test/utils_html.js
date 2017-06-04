@@ -20,7 +20,7 @@ test("full tag", function () {
 	sut.open("a");
 	sut.attr("b", "c");
 	sut.attr("d", "e");
-	sut.write("f");
+	sut.text("f");
 	sut.end();
 
 	A.strictEqual(ws.out, '<a b="c" d="e">f</a>');
@@ -30,7 +30,7 @@ test("id and class", function () {
 	sut.open("a");
 	sut.id("b");
 	sut.cls("c d");
-	sut.write("e");
+	sut.text("e");
 	sut.end();
 
 	A.strictEqual(ws.out, '<a id="b" class="c d">e</a>');
@@ -57,13 +57,13 @@ test("inline tags", function () {
 	A.strictEqual(ws.out, '<a><b c="d"><e>');
 });
 
-test("close and write", function () {
+test("close and write text", function () {
 	sut.open("a");
 	sut.put("b");
 	sut.open("c");
 	sut.attr("d", "e");
 	sut.close();
-	sut.write("f");
+	sut.text("f");
 	sut.end();
 
 	A.strictEqual(ws.out, '<a><b><c d="e"></c>f</a>');
@@ -76,6 +76,14 @@ test("#raw()", function () {
 	sut.end();
 
 	A.strictEqual(ws.out, str);
+});
+
+test("#text()", function () {
+	sut.open("a");
+	sut.text("<\"&>");
+	sut.end();
+
+	A.strictEqual(ws.out, "<a>&lt;&quot;&amp;&gt;</a>");
 });
 
 test("#css()", function () {
@@ -92,9 +100,9 @@ test("table", function () {
 	sut.th("B");
 	sut.tr();
 	sut.td();
-	sut.write("C");
+	sut.text("C");
 	sut.td();
-	sut.write("D");
+	sut.text("D");
 	sut.end();
 
 	A.strictEqual(ws.out, '<table id="a"><tr><th>A</th><th>B</th></tr><tr><td>C</td><td>D</td></tr></table>');

@@ -30,7 +30,7 @@ test("render html5", function () {
 	sut.title("A");
 	sut.body();
 	sut.render(function (html) {
-		html.write("B");
+		html.text("B");
 	});
 	sut.end();
 
