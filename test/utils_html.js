@@ -86,13 +86,6 @@ test("#text()", function () {
 	A.strictEqual(ws.out, "<a>&lt;&quot;&amp;&gt;</a>");
 });
 
-test("#css()", function () {
-	sut.css("a");
-	sut.end();
-
-	A.strictEqual(ws.out, '<link href="a.css" type="text/css" rel="stylesheet">');
-});
-
 test("table", function () {
 	sut.table();
 	sut.id("a");

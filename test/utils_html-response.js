@@ -25,6 +25,12 @@ test("#ok()", function () {
 	sut.ok();
 });
 
+test("#css()", function () {
+	sut.css("a");
+
+	A.strictEqual(ws.out, '<link href="a.css" type="text/css" rel="stylesheet">');
+});
+
 test("render html5", function () {
 	sut.html5();
 	sut.title("A");
